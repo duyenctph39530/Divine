@@ -127,11 +127,13 @@
                 </div>
             </div>
         @endforeach<div class="d-flex justify-content-center">
-        {{ $views->links() }}
+        
     </div>
     </div>
     
-    <h2 class="text-center">Học tập</h2>
+   <div class="">
+    
+   </div>
     <hr>
     <div class="row">
         @foreach ($study1 as $study)
@@ -147,7 +149,7 @@
                 </div>
             </div>
         @endforeach <div class="d-flex justify-content-center">
-        {{ $views->links() }}
+        
     </div>
     </div>
    
@@ -167,7 +169,7 @@
                 </div>
             </div>
         @endforeach<div class="d-flex justify-content-center">
-        {{ $views->links() }}
+        
     </div>
     </div>
     
@@ -187,7 +189,7 @@
                 </div>
             </div>
         @endforeach    <div class="d-flex justify-content-center">
-        {{ $views->links() }}
+        
     </div>
     </div>
 

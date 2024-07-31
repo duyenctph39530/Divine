@@ -1,4 +1,7 @@
 <?php
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController as AdminProduct;
 
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +20,30 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('client.product');
 // });
+// Admin++++++++++++++
+
+Route::get('/admin',[DashboardController::class ,'index'])->name('dashboard');
+// product
+Route::prefix('admin/product')->group(function(){
+    Route::get('/list',[AdminProduct::class ,'index'])->name('list-product');
+    Route::get('/create',[AdminProduct::class ,'create'])->name('create-product');
+    Route::post('/store',[AdminProduct::class ,'store'])->name('store-product');
+    Route::get('/edit/{product}',[AdminProduct::class ,'edit'])->name('edit-product');
+    Route::put('/update/{product}',[AdminProduct::class ,'update'])->name('update-product');
+    Route::get('/delete/{product}',[AdminProduct::class ,'destroy'])->name('destroy-product');
+});
+//category
+Route::prefix('admin/category')->group(function(){
+    Route::get('/list',[CategoryController::class ,'index'])->name('list-category');
+    Route::get('/create',[CategoryController::class ,'create'])->name('create-category');
+    Route::post('/store',[CategoryController::class ,'store'])->name('store-category');
+    Route::get('/edit/{category}',[CategoryController::class ,'edit'])->name('edit-category');
+    Route::put('/update/{category}',[CategoryController::class ,'update'])->name('update-category');
+    Route::get('/delete/{category}',[CategoryController::class ,'destroy'])->name('destroy-category');
+});
+
+
+// Client++++++++++++++
 Route::get('/', [ProductController::class, 'index'])->name('home.product');
 Route::get('/product', [ProductController::class, 'list'])->name('list.product');
 Route::get('/study', [ProductController::class, 'studyProduct'])->name('study.product');
