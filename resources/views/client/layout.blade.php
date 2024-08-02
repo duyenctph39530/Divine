@@ -15,19 +15,20 @@
     <div class="container ">
         <div class="row">
             <div class="col-6"></div>
-            <div class="col-2"> 
+            <div class="col-2">
                 <a href="" class="text-info ">Sản phẩm khuyến mãi</a>
             </div>
-            <div class="col-2"> 
+            <div class="col-2">
                 <a href="" class="text-info ">Thông tin liên hệ</a>
             </div>
-            <div class="col-2"> 
+            <div class="col-2">
                 <a href="" class="text-info ">Hình thức liên hệ</a>
             </div>
         </div>
         <div class="row mt-3">
             <div class="col-3">
-                <img src="{{ asset('storage/images/logo.jpg') }}" width="50px" alt="">
+                <a href="{{ route('home.product') }}"> <img src="{{ asset('storage/images/logo.jpg') }}" width="50px"
+                        alt=""></a>
             </div>
             <div class="col-6 mt-3">
                 <form class="d-flex" role="search">
@@ -41,19 +42,42 @@
                         <img src="{{ asset('storage/images/icon.png') }}" width="35px" alt="">
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{route('login.product')}}">Đăng Nhập</a></li>
-                        <li><a class="dropdown-item" href="{{route('logout.product')}}">Đăng Ký</a></li>
+                        <li><a class="dropdown-item" href="{{ route('login-user') }}">Đăng Nhập</a></li>
+                        <li><a class="dropdown-item" href="{{ route('register-user') }}">Đăng Ký</a></li>
                     </ul>
-                </div>
+                </div> @auth
+                    <div class="dropdown w-25">
 
-                <div class=""> <a href="{{route('cart.product')}}"><img src="{{ asset('storage/images/cart.png') }}" width="80px"
-                            alt=""></a></div>
+                        <button class="btn btn-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>{{ Auth::user()->username }}</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="">Thông tin tài khoản</a></li>
+                            <form id="logout-form" action="{{ route('logout-user') }}" method="POST"
+                                style="display: none;">
+                                @csrf
+                            </form>
+                            <li>
+                                <a class="dropdown-item" href="#"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Đăng Xuất
+                                </a>
+                            </li>
+                            {{-- <li><a class="dropdown-item" href="{{route('logout-user')}}">Đăng Xuất</a></li> --}}
+                        </ul>
+                    </div>
+                    </ul>
+                @endauth
+
+
+                <div class=""> <a href="{{ route('cart.product') }}"><img
+                            src="{{ asset('storage/images/cart.png') }}" width="80px" alt=""></a></div>
 
 
             </div>
 
         </div>
-       
+
         <div class="row mb-3 bg-light ">
             <nav class="navbar navbar-expand-lg ">
                 <div class="container-fluid d-flex justify-content-center align-items-center">
@@ -63,21 +87,25 @@
                                 <a class="nav-link text-success" href="{{ route('home.product') }}">Trang Chủ</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-success" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle text-success" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
                                     Sản phẩm
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{{ route('list.product') }}">Tất cả</a></li>
                                     <li><a class="dropdown-item" href="{{ route('study.product') }}">Học tập</a></li>
                                     <li><a class="dropdown-item" href="{{ route('work.product') }}">Giải trí</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('entertaiment.product') }}">Công việc</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('entertaiment.product') }}">Công
+                                            việc</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-success" href="{{ route('deal.product') }}">Ưu đãi dành cho khách vip</a>
+                                <a class="nav-link text-success" href="{{ route('deal.product') }}">Ưu đãi dành cho
+                                    khách vip</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-success" href="{{ route('conduct.product') }}">Hướng dẫn mua hàng</a>
+                                <a class="nav-link text-success" href="{{ route('conduct.product') }}">Hướng dẫn mua
+                                    hàng</a>
                             </li>
                         </ul>
                     </div>
@@ -85,10 +113,10 @@
             </nav>
         </div>
         <hr>
-      
+
     </div>
- <div class="container">
-            @yield('content')</div>
+    <div class="container">
+        @yield('content')</div>
     <footer class="container ">
         <div class="row">
             <div class="col-3">

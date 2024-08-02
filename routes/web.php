@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProduct;
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,10 +23,9 @@ use Illuminate\Support\Facades\Route;
 //     return view('client.product');
 // });
 // Admin++++++++++++++
-
-Route::get('/admin',[DashboardController::class ,'index'])->name('dashboard');
+Route::middleware('auth')->get('/admin',[DashboardController::class ,'index'])->name('dashboard');
 // product
-Route::prefix('admin/product')->group(function(){
+Route::middleware('auth')->prefix('admin/product')->group(function(){
     Route::get('/list',[AdminProduct::class ,'index'])->name('list-product');
     Route::get('/create',[AdminProduct::class ,'create'])->name('create-product');
     Route::post('/store',[AdminProduct::class ,'store'])->name('store-product');
@@ -33,7 +34,7 @@ Route::prefix('admin/product')->group(function(){
     Route::get('/delete/{product}',[AdminProduct::class ,'destroy'])->name('destroy-product');
 });
 //category
-Route::prefix('admin/category')->group(function(){
+Route::middleware('auth')->prefix('admin/category')->group(function(){
     Route::get('/list',[CategoryController::class ,'index'])->name('list-category');
     Route::get('/create',[CategoryController::class ,'create'])->name('create-category');
     Route::post('/store',[CategoryController::class ,'store'])->name('store-category');
@@ -41,6 +42,18 @@ Route::prefix('admin/category')->group(function(){
     Route::put('/update/{category}',[CategoryController::class ,'update'])->name('update-category');
     Route::get('/delete/{category}',[CategoryController::class ,'destroy'])->name('destroy-category');
 });
+
+//user
+
+Route::middleware('auth')->get('/admin/user',[UserController::class,'index'])->name('list-user');
+
+Route::get('/login',[UserController::class,'login'])->name('login-user');
+Route::post('/login',[UserController::class,'postLogin'])->name('postLogin-user');
+
+Route::post('/logout',[UserController::class,'logout'])->name('logout-user');
+
+Route::get('/register',[UserController::class,'register'])->name('register-user');
+Route::post('/register',[UserController::class,'postRegister'])->name('postRegister-user');
 
 
 // Client++++++++++++++
@@ -60,10 +73,4 @@ Route::get('/deal', function () {
 Route::get('/conduct', function () {
     return view('client.conduct');
 })->name('conduct.product');
-Route::get('/login', function () {
-    return view('client.login');
-})->name('login.product');
-Route::get('/logout', function () {
-    return view('client.logout');
-})->name('logout.product');
 

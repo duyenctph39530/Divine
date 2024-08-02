@@ -36,15 +36,29 @@
                 </form>
             </div>
             <div class="col-3 d-flex  justify-content-end align-items-center">
-                <div class="dropdown w-25">
-                    <button class="btn btn-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{{ asset('storage/images/icon.png') }}" width="35px" alt="">
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('login.product') }}">Đăng Nhập</a></li>
-                        <li><a class="dropdown-item" href="{{ route('logout.product') }}">Đăng Ký</a></li>
+                @auth
+                    <div class="dropdown w-25">
+
+                        <button class="btn btn-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>{{ Auth::user()->username }}</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="">Thông tin tài khoản</a></li>
+                            <form id="logout-form" action="{{ route('logout-user') }}" method="POST"
+                                style="display: none;">
+                                @csrf
+                            </form>
+                            <li>
+                                <a class="dropdown-item" href="#"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Đăng Xuất
+                                </a>
+                            </li>
+                            {{-- <li><a class="dropdown-item" href="{{route('logout-user')}}">Đăng Xuất</a></li> --}}
+                        </ul>
+                    </div>
                     </ul>
-                </div>
+                @endauth
 
                 <div class=""> <a href="{{ route('cart.product') }}"><img
                             src="{{ asset('storage/images/cart.png') }}" width="80px" alt=""></a></div>
