@@ -15,28 +15,28 @@
                 <th scope="col">User Name</th>
                 <th scope="col">Avatar</th>
                 <th scope="col">Email</th>
-                <th scope="col">Password</th>
+                <th scope="col">Active</th>
 
             </tr>
         </thead>
         <tbody>
-            <a href="{{ route('create-user') }}" class="btn btn-primary">Create new</a>
+            {{-- <a href="{{ route('create-user') }}" class="btn btn-primary">Create new</a> --}}
             @foreach ($users as $user)
                 <tr>
                     <th scope="row">{{ $user->id }}</th>
                     <td>{{ $user->fullname }}</td>
                     <td>{{ $user->username }}</td>
-                    <td><img src="{{ asset('/storage/'.$user->avatar) }}" width="50" alt=""></td>
+                    <td><img src="{{ asset('storage/'.$user->avatar) }}" width="50" alt=""></td>
                     <td>{{ $user->email }}</td>
-                    <td>{{ $user->password }}</td>
+                    <td>{{ $user->active ? 'Kích hoạt' : 'Dừng hoạt động'}}</td>
 
-                    <td>{{}}</td>
-                    <td class="d-flex gap-1">
-                        <form action="{{ route('destroy-user', $user) }}">
+                    <td class="">
+                        
+                        <form action="{{ route('toggleActive', $user->id) }}" method="POST">
                             @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger "
-                                onclick="return confirm('Bạn chắc chắn muốn xóa ? ')">Delete</button>
+                            @method('PATCH')
+                            <button type="submit"
+                                class="btn btn-danger">{{ $user->active ? 'Dừng hoạt động' : 'Kích hoạt' }}</button>
                         </form>
 
                     </td>

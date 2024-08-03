@@ -1,4 +1,4 @@
-@extends('client.layout')
+@extends('layout')
 @section('title')
     Giải trí
 @endsection
@@ -10,7 +10,8 @@
                 <div class="card" style="width: 100%;">
                     <img src="{{ $product->image }}" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $product->name }}</h5> 
+                        <a href="{{ route('detail.product', $product->id) }}">
+                            <h5 class="card-title">{{ $product->name }}</h5> </a>
                         <p class=" text-danger"> Giá: {{ $product->price }}</p>
                     </div>
                 </div>

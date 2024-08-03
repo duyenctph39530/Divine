@@ -31,13 +31,14 @@
                         alt=""></a>
             </div>
             <div class="col-6 mt-3">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" action="{{route('search')}}" role="search">
+                    <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
             <div class="col-3 d-flex  justify-content-end align-items-center">
-                <div class="dropdown w-25">
+                @guest()
+                    <div class="dropdown w-25">
                     <button class="btn btn-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="{{ asset('storage/images/icon.png') }}" width="35px" alt="">
                     </button>
@@ -45,14 +46,17 @@
                         <li><a class="dropdown-item" href="{{ route('login-user') }}">Đăng Nhập</a></li>
                         <li><a class="dropdown-item" href="{{ route('register-user') }}">Đăng Ký</a></li>
                     </ul>
-                </div> @auth
+                </div> 
+                @endguest
+                
+                @auth
                     <div class="dropdown w-25">
 
                         <button class="btn btn-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span>{{ Auth::user()->username }}</span>
+                            <img src="{{ asset('storage/images/icon.png') }}" width="35px" alt="">
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="">Thông tin tài khoản</a></li>
+                            <li><a class="dropdown-item" href="{{route('detail-user',Auth::user()->id)}}">Thông tin tài khoản</a></li>
                             <form id="logout-form" action="{{ route('logout-user') }}" method="POST"
                                 style="display: none;">
                                 @csrf
@@ -94,9 +98,8 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="{{ route('list.product') }}">Tất cả</a></li>
                                     <li><a class="dropdown-item" href="{{ route('study.product') }}">Học tập</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('work.product') }}">Giải trí</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('entertaiment.product') }}">Công
-                                            việc</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('work.product') }}">Công việc</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('entertaiment.product') }}">Giải trí</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">

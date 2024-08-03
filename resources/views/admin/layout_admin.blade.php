@@ -13,37 +13,25 @@
 <body>
 
     <div class="container ">
-        <div class="row">
-            <div class="col-6"></div>
-            <div class="col-2">
-                <a href="" class="text-info ">Sản phẩm khuyến mãi</a>
-            </div>
-            <div class="col-2">
-                <a href="" class="text-info ">Thông tin liên hệ</a>
-            </div>
-            <div class="col-2">
-                <a href="" class="text-info ">Hình thức liên hệ</a>
-            </div>
-        </div>
+
         <div class="row mt-3">
             <div class="col-3">
-                <img src="{{ asset('storage/images/logo.jpg') }}" width="50px" alt="">
+                <a href="{{ route('home.product') }}"> <img src="{{ asset('storage/images/logo.jpg') }}" width="50px"
+                        alt=""></a>
             </div>
             <div class="col-6 mt-3">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+
             </div>
             <div class="col-3 d-flex  justify-content-end align-items-center">
                 @auth
                     <div class="dropdown w-25">
 
                         <button class="btn btn-link" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span>{{ Auth::user()->username }}</span>
+                            <img src="{{ asset('storage/images/icon.png') }}" width="35px" alt="">
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="">Thông tin tài khoản</a></li>
+                            {{-- <li><a class="dropdown-item" href="{{ route('detail-user', Auth::user()->id) }}">Thông tin tài
+                                    khoản</a></li> --}}
                             <form id="logout-form" action="{{ route('logout-user') }}" method="POST"
                                 style="display: none;">
                                 @csrf
@@ -54,16 +42,10 @@
                                     Đăng Xuất
                                 </a>
                             </li>
-                            {{-- <li><a class="dropdown-item" href="{{route('logout-user')}}">Đăng Xuất</a></li> --}}
                         </ul>
                     </div>
                     </ul>
                 @endauth
-
-                <div class=""> <a href="{{ route('cart.product') }}"><img
-                            src="{{ asset('storage/images/cart.png') }}" width="80px" alt=""></a></div>
-
-
             </div>
 
         </div>
@@ -71,27 +53,28 @@
     </div>
     <div class="container">
         <div class="row">
-            <h3 class="text-center mb-3">@yield('title')</h3>    <hr>
+            <h3 class="text-center mb-3">@yield('title')</h3>
+            <hr>
             <aside class="col-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{route('dashboard')}}" >Dashboard</a>
+                        <a class="nav-link active" href="{{ route('dashboard') }}">Dashboard</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link "  href="{{route('list-product')}}">Product</a>
+                        <a class="nav-link " href="{{ route('list-product') }}">Product</a>
                     </li>
-                    
+
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('list-category')}}">Category</a>
+                        <a class="nav-link" href="{{ route('list-category') }}">Category</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">User</a>
+                        <a class="nav-link" href="{{ route('list-user') }}">User</a>
                     </li>
-                    
+
                 </ul>
             </aside>
             <article class="col-8">
-                
+
                 @yield('content')
             </article>
         </div>

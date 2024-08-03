@@ -16,15 +16,8 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // if (Auth::check()) {
-        //     if (Auth::user()->role == 'admin') {
-        // return $next($request);
-        //     } else {
-        //         return redirect()->route('login-user')->with('mes', 'Tài khoản của bạn không có quyền truy cập');
-        //     }
-        // }
-        // return redirect()->route('dashboard');
-        return (Auth::user()->role == 'admin') ? $next($request) : redirect()->route('home.product');
+       
+        return (Auth::user()->role == 'admin') ? $next($request) : redirect()->route('dashboard');
 
     }
 }

@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('client.product');
-// });
+Route::get('/w', function () {
+    return view('welcome');
+});
 // Admin++++++++++++++
-Route::middleware('auth')->get('/admin',[DashboardController::class ,'index'])->name('dashboard');
+Route::middleware(['auth','admin'])->get('/admin',[DashboardController::class ,'index'])->name('dashboard');
 // product
 Route::middleware('auth')->prefix('admin/product')->group(function(){
     Route::get('/list',[AdminProduct::class ,'index'])->name('list-product');
@@ -34,7 +34,7 @@ Route::middleware('auth')->prefix('admin/product')->group(function(){
     Route::get('/delete/{product}',[AdminProduct::class ,'destroy'])->name('destroy-product');
 });
 //category
-Route::middleware('auth')->prefix('admin/category')->group(function(){
+Route::middleware(['auth','admin'])->prefix('admin/category')->group(function(){
     Route::get('/list',[CategoryController::class ,'index'])->name('list-category');
     Route::get('/create',[CategoryController::class ,'create'])->name('create-category');
     Route::post('/store',[CategoryController::class ,'store'])->name('store-category');
@@ -43,10 +43,25 @@ Route::middleware('auth')->prefix('admin/category')->group(function(){
     Route::get('/delete/{category}',[CategoryController::class ,'destroy'])->name('destroy-category');
 });
 
-//user
+//user admin
 
-Route::middleware('auth')->get('/admin/user',[UserController::class,'index'])->name('list-user');
+Route::middleware(['auth','admin'])->get('/admin/user',[UserController::class,'index'])->name('list-user');
+Route::middleware(['auth','admin'])->patch('/admin/toggle_active/{user}',[UserController::class,'toggleActive'])->name('toggleActive');
 
+//user client
+Route::middleware('auth')->prefix('user')->group(function(){
+    Route::get('/detail-user/{user}',[UserController::class,'detail_user'])->name('detail-user');
+    Route::put('/detail-user/{user}',[UserController::class,'updateUser'])->name('updateUser');
+    Route::get('/change-password',[UserController::class,'changePassword'])->name('changePassword');
+    Route::post('/change-password',[UserController::class,'updatePassword'])->name('updatePassword');
+
+
+});
+
+
+
+
+//đăng ký, đăng nhập
 Route::get('/login',[UserController::class,'login'])->name('login-user');
 Route::post('/login',[UserController::class,'postLogin'])->name('postLogin-user');
 
@@ -64,6 +79,10 @@ Route::get('/work', [ProductController::class, 'workProduct'])->name('work.produ
 Route::get('/entertaiment', [ProductController::class, 'entertaimentProduct'])->name('entertaiment.product');
 Route::get('/detail/{id}', [ProductController::class, 'detailProduct'])->name('detail.product');
 Route::get('/cart',  [ProductController::class, 'cartProduct'])->name('cart.product');
+Route::get('/cart/{product}',  [ProductController::class, 'addCart'])->name('add.cart');
+
+Route::get('/search',  [ProductController::class, 'search'])->name('search');
+
 
  
 

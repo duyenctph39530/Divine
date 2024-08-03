@@ -1,4 +1,4 @@
-@extends('client.layout')
+@extends('layout')
 @section('title')
     Công Việc
 @endsection
@@ -12,6 +12,7 @@
                     <div class="card-body">
                         <a href="{{ route('detail.product', $product->id) }}">
                         <h5 class="card-title">{{ $product->name }}</h5> </a>
+                        <a href=""> DMD</a>
                         <p class=" text-danger"> Giá: {{ $product->price }}</p>
                     </div>
                 </div>

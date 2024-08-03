@@ -1,4 +1,4 @@
-@extends('client.layout')
+@extends('layout')
 @section('title')
     Đăng ký
 @endsection
@@ -11,9 +11,9 @@
     @endif
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h3 class="text-center my-4">Logout</h3>
+            <h3 class="text-center my-4">Register</h3>
             {{-- <form action="{{router('postRegister-user')}}" method="post" class="p-4 border rounded shadow-sm"> --}}
-            <form action="" method="post" class="p-4 border rounded shadow-sm">
+            <form action="" method="post" class="p-4 border rounded shadow-sm" enctype="multipart/form-data">
 
                 @csrf
                 <div class="form-group mb-3">
@@ -37,7 +37,7 @@
                     <input class="form-control" type="password" name="password" id="password" required>
                 </div>
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-success">Logout</button>
+                    <button type="submit" class="btn btn-success">Register</button>
                 </div>
             </form>
 
