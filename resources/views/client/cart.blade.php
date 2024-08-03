@@ -10,7 +10,7 @@
         <div class="col-8 ">
             <div class="row p-4 border rounded shadow-sm">
                 <div class="col-3">
-                    <img src="{{ $products->image }}" alt="" width="100px">
+                    <img src="{{asset('storage/'.$product->image )}}" class="card-img-top" alt="...">
                 </div>
                 <div class="col-3">
                     <p>{{ $products->name }}</p>

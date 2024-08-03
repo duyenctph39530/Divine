@@ -7,7 +7,7 @@
     <div class="row">
 
         <div class="col-6">
-            <img src="{{ $products->image }}" width="80%" alt="">
+            <img src="{{asset('storage/'.$product->image )}}" class="card-img-top" alt="...">
         </div>
         <div class="col-6">
             <h2>{{ $products->name }}</h2>
