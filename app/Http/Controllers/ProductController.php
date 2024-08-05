@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -56,10 +57,33 @@ class ProductController extends Controller
 
     public function cartProduct()
     {
-       
+        $cart = session()->get('cart', []);
+        return view('client.cart', compact('cart'));
+    }
 
-        return view('client.cart', compact('products'));
+    public function addCart(Product $product)
+    {
+        // $product = Auth::product();
+        $product = Product::findOrFail($product);
 
+        $cart = session()->get('cart', []);
+
+        // Nếu giỏ hàng trống, thêm sản phẩm mới vào giỏ hàng
+        if (!isset($cart[$product])) {
+            $cart[$product] = [
+                "name" => $product->name,
+                "quantity" => 1,
+                "price" => $product->price,
+                "image" => $product->image
+            ];
+        } else {
+            // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng lên 1
+            $cart[$product]['quantity']++;
+        }
+
+        session()->put('cart', $cart);
+
+        return redirect()->route('cart.product')->with('success', 'Sản phẩm đã được thêm vào giỏ hàng!');
     }
     public function search(Request $request)
     {

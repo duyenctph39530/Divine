@@ -5,20 +5,18 @@
 
 @section('content')
     <div class="row">
-
         <div class="col-6">
-            <img src="{{asset('storage/'.$product->image )}}" class="card-img-top" alt="...">
+            <img src="{{asset('storage/'.$products->image )}}" class="card-img-top" alt="...">
         </div>
         <div class="col-6">
             <h2>{{ $products->name }}</h2>
             Giá: <span class="danger">{{ $products->price }}</span>
-            <p>Thể loại: {{ $products->category_id }}</p>
+            <p>Thể loại: {{ $products->category->name }}</p>
             <div class="">
-                <a href="{{route('cart.product')}}" class="btn btn-primary">Thêm vào giỏ hàng</a>
+                <a href="" class="btn btn-primary">Thêm vào giỏ hàng</a>
                 <a href="" class="btn btn-danger">Mua</a>
 
             </div>
-
         </div>
 
     </div>

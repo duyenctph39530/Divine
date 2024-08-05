@@ -78,8 +78,10 @@ Route::get('/study', [ProductController::class, 'studyProduct'])->name('study.pr
 Route::get('/work', [ProductController::class, 'workProduct'])->name('work.product');
 Route::get('/entertaiment', [ProductController::class, 'entertaimentProduct'])->name('entertaiment.product');
 Route::get('/detail/{id}', [ProductController::class, 'detailProduct'])->name('detail.product');
-Route::get('/cart',  [ProductController::class, 'cartProduct'])->name('cart.product');
-Route::get('/cart/{product}',  [ProductController::class, 'addCart'])->name('add.cart');
+// Route::get('/cart',  [ProductController::class, 'cartProduct'])->name('cart.product');
+// Route::get('/cart/{id}',  [ProductController::class, 'addCart'])->name('add.cart');
+Route::get('/cart', [ProductController::class, 'cartProduct'])->name('cart.product');
+Route::get('/cart/add/{product}', [ProductController::class, 'addCart'])->name('add.cart');
 
 Route::get('/search',  [ProductController::class, 'search'])->name('search');
 
