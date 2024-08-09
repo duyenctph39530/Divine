@@ -18,7 +18,7 @@
                     {{ session('mes') }}
                 </div>
             @endif
-            <a href="{{ route('updatePassword') }}" class="btn btn-primary">Đổi mật khẩu</a>
+            {{-- <a href="{{ route('updatePassword') }}" class="btn btn-primary">Đổi mật khẩu</a> --}}
             <form action="{{ route('updateUser', Auth::user()->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')

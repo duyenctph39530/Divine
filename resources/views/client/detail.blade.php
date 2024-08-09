@@ -10,10 +10,10 @@
         </div>
         <div class="col-6">
             <h2>{{ $products->name }}</h2>
-            Giá: <span class="danger">{{ $products->price }}</span>
+            Giá: <span class="danger">{{ $products->price }} đ</span>
             <p>Thể loại: {{ $products->category->name }}</p>
             <div class="">
-                <a href="" class="btn btn-primary">Thêm vào giỏ hàng</a>
+                <a href="{{route('add.cart',$products->id)}}" class="btn btn-primary">Thêm vào giỏ hàng</a>
                 <a href="" class="btn btn-danger">Mua</a>
 
             </div>

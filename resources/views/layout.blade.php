@@ -67,7 +67,7 @@
                                     Đăng Xuất
                                 </a>
                             </li>
-                            {{-- <li><a class="dropdown-item" href="{{route('logout-user')}}">Đăng Xuất</a></li> --}}
+                            <li><a class="dropdown-item" href="{{route('updatePassword')}}">Đổi mật khẩu</a></li>
                         </ul>
                     </div>
                     </ul>

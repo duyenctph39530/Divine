@@ -90,7 +90,7 @@
         @foreach ($products as $product)
             <div class="col-3 mb-3">
                 <div class="card" style="width: 100%;">
-                    <img src="{{asset('storage/'.$product->image )}}" class="card-img-top" alt="...">
+                    <img src="{{ asset('storage/' . $product->image) }}" class="card-img-top" alt="...">
                     <div class="card-body text center">
                         <a href="{{ route('detail.product', $product->id) }}">
                             <h5 class="card-title text-body">{{ $product->name }}</h5>
@@ -106,7 +106,7 @@
 
     </div>
     <div class="d-flex justify-content-center">
-       
+
     </div>
     <h2 class="text-center">Sản phẩm nổi bật nhất</h2>
     <hr>
@@ -114,85 +114,87 @@
         @foreach ($views as $view)
             <div class="col-3 mb-3">
                 <div class="card" style="width: 100%;">
-                    <img src="{{asset('storage/'.$product->image )}}" class="card-img-top" alt="...">
+                    <img src="{{ asset('storage/' . $view->image) }}" class="card-img-top" alt="...">
                     <div class="card-body text center">
-                        <a href="{{ route('detail.product', $product->id) }}">
+                        <a href="{{ route('detail.product', $view->id) }}">
                             <h5 class="card-title text-body">{{ $view->name }}</h5>
                         </a>
                         <p class=" text-danger"> Giá: {{ $view->price }}</p>
                     </div>
                     <div class="d-flex justify-content-center m-2">
-                        <a href="{{ route('detail.product', $product->id) }}" class="btn btn-primary w-50 ">Xem thêm</a>
+                        <a href="{{ route('detail.product', $view->id) }}" class="btn btn-primary w-50 ">Xem thêm</a>
                     </div>
                 </div>
             </div>
-        @endforeach<div class="d-flex justify-content-center">
-        
+        @endforeach
+        <div class="d-flex justify-content-center">
+        </div>
     </div>
+
+    <div class="">
+
     </div>
-    
-   <div class="">
-    
-   </div>
     <hr>
     <div class="row">
         @foreach ($study1 as $study)
             <div class="col-3 mb-3">
                 <div class="card" style="width: 100%;">
-                    <img src="{{asset('storage/'.$product->image )}}" class="card-img-top" alt="...">
+                    <img src="{{ asset('storage/' . $study->image) }}" class="card-img-top" alt="...">
                     <div class="card-body text center">
                         <p class=" text-danger"> Giá: {{ $study->price }}</p>
                     </div>
                     <div class="d-flex justify-content-center m-2">
-                        <a href="{{ route('detail.product', $product->id) }}" class="btn btn-primary w-50 ">Xem thêm</a>
+                        <a href="{{ route('detail.product', $study->id) }}" class="btn btn-primary w-50 ">Xem thêm</a>
                     </div>
                 </div>
             </div>
-        @endforeach <div class="d-flex justify-content-center">
-        
+        @endforeach
+        <div class="d-flex justify-content-center">
+
+        </div>
     </div>
-    </div>
-   
+
     <h2 class="text-center">Công việc</h2>
     <hr>
     <div class="row">
         @foreach ($study2 as $study)
             <div class="col-3 mb-3">
                 <div class="card" style="width: 100%;">
-                    <img src="{{asset('storage/'.$product->image )}}" class="card-img-top" alt="...">
+                    <img src="{{ asset('storage/' . $study->image) }}" class="card-img-top" alt="...">
 
                     <div class="card-body text center">
                         <p class=" text-danger"> Giá: {{ $study->price }}</p>
                     </div>
                     <div class="d-flex justify-content-center m-2">
-                        <a href="{{ route('detail.product', $product->id) }}" class="btn btn-primary w-50 ">Xem thêm</a>
+                        <a href="{{ route('detail.product', $study->id) }}" class="btn btn-primary w-50 ">Xem thêm</a>
                     </div>
                 </div>
             </div>
-        @endforeach<div class="d-flex justify-content-center">
-        
+        @endforeach
+        <div class="d-flex justify-content-center">
+
+        </div>
     </div>
-    </div>
-    
+
     <h2 class="text-center">Giải trí</h2>
     <hr>
     <div class="row">
         @foreach ($study3 as $study)
             <div class="col-3 mb-3">
                 <div class="card" style="width: 100%;">
-                    <img src="{{asset('storage/'.$product->image )}}" class="card-img-top" alt="...">
+                    <img src="{{ asset('/storage/' . $study->image) }}" class="card-img-top" alt="...">
 
                     <div class="card-body text center">
                         <p class=" text-danger"> Giá: {{ $study->price }}</p>
                     </div>
                     <div class="d-flex justify-content-center m-2">
-                        <a href="{{ route('detail.product', $product->id) }}" class="btn btn-primary w-50 ">Xem thêm</a>
+                        <a href="{{ route('detail.product', $study->id) }}" class="btn btn-primary w-50 ">Xem thêm</a>
                     </div>
                 </div>
             </div>
-        @endforeach    <div class="d-flex justify-content-center">
-        
-    </div>
-    </div>
+        @endforeach
+        <div class="d-flex justify-content-center">
 
+        </div>
+    </div>
 @endsection

@@ -13,8 +13,9 @@ class DashboardController extends Controller
    {
       $totalProduct= Product::count();
       $totalCategory= Category::count();
+
       $totalView= Product::sum('view');
-      $productsByCategory = Product::count('category_id');
+      $productsByCategory = Category::withCount('products')->get();
     return view('admin.dashboard',compact('totalProduct','totalCategory','totalView','productsByCategory'));
    }
 }
